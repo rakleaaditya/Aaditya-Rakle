@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AVOX MUN 2026 — Voices That Carry</title>
-<meta name="description" content="AVOX Model United Nations — Voices That Carry. October 11–13, 2026 at Niraj International School. Six committees, limited delegate seats. Apply as a delegate now.">
+<meta name="description" content="AVOX Model United Nations — Voices That Carry. October 11–13, 2026 at Niraj International School. Six committees, limited delegate seats.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e16'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%E2%9C%8A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,12 +116,6 @@
   }
   nav a.link:hover{ color:var(--gold-bright); }
   nav a.link:hover::after{ right:0; }
-  .nav-cta{
-    display:inline-block; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
-    padding:10px 20px; border-radius:999px; border:1px solid var(--gold-dim);
-    color:var(--gold-bright); transition:all .3s var(--ease);
-  }
-  .nav-cta:hover{ background:var(--gold-bright); color:#1a0e05; box-shadow:0 0 22px rgba(233,213,166,.45); }
   .burger{
     display:none; width:38px; height:38px; border:1px solid var(--line); border-radius:8px;
     background:rgba(255,255,255,.02); position:relative;
@@ -357,27 +351,9 @@
   .event-panel .item{ border-right:1px solid var(--line); }
   .event-panel .item:last-child{ border-right:none; }
 
-  /* ---------- Register ---------- */
-  .register-panel{
-    margin-top:50px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:flex-start;
-  }
-  .register-copy h3{ font-family:var(--serif); font-size:28px; color:var(--gold-bright); margin-bottom:14px; font-weight:600; }
-  .register-copy p{ color:var(--ink-dim); line-height:1.8; font-size:14.5px; margin-bottom:14px; }
-  .register-copy .btn{ margin-top:10px; }
-  form{ display:flex; flex-direction:column; gap:16px; }
-  .field{ display:flex; flex-direction:column; gap:8px; }
-  .field label{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-dim); }
-  .field input, .field select{
-    background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:10px; padding:13px 14px;
-    color:var(--gold-bright); font-family:var(--sans); font-size:14.5px; transition:border-color .3s, background .3s;
-  }
-  .field input:focus, .field select:focus{ outline:none; border-color:var(--ember); background:rgba(255,138,61,.05); }
-  .field select option{ background:#0b1120; color:var(--gold-bright); }
-  .form-note{ font-size:12px; color:var(--ink-dim); line-height:1.6; }
-  .form-msg{ font-size:13px; color:var(--ember); min-height:18px; }
-
   /* ---------- Footer ---------- */
-  footer{ text-align:center; padding:70px 24px 40px; border-top:1px solid var(--line); }
+  /* positioned like section: the fixed .bg-layer paints over static content */
+  footer{ position:relative; z-index:2; text-align:center; padding:70px 24px 40px; border-top:1px solid var(--line); }
   footer .mark{ width:26px; height:26px; margin:0 auto 14px; color:var(--gold-dim); }
   footer .foot-word{ font-family:var(--serif); letter-spacing:.3em; font-size:13px; color:var(--gold-bright); text-transform:uppercase; }
   footer .foot-motto{ margin-top:10px; font-size:11px; letter-spacing:.22em; color:var(--ink-dim); text-transform:uppercase; }
@@ -385,7 +361,7 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width:900px){
-    nav, .nav-cta{ display:none; }
+    nav{ display:none; }
     .burger{ display:block; }
     .about-grid{ grid-template-columns:1fr; }
     .carousel-on .committee-slide{ width:94vw; height:68vh; padding:26px; }
@@ -394,7 +370,6 @@
     .event-panel .item:nth-child(2){ border-right:none; }
     .event-panel .item{ border-bottom:1px solid var(--line); padding-bottom:18px; }
     .event-panel .item:nth-child(3),.event-panel .item:nth-child(4){ border-bottom:none; }
-    .register-panel{ grid-template-columns:1fr; gap:36px; }
   }
   @media (max-width:520px){
     .wrap{ padding:90px 18px; }
@@ -427,7 +402,6 @@
       <li><a class="link" href="#about">About</a></li>
       <li><a class="link" href="#committees">Committees</a></li>
       <li><a class="link" href="#event">2026</a></li>
-      <li><a class="nav-cta" href="#register">Apply Now</a></li>
     </ul>
   </nav>
   <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
@@ -437,7 +411,6 @@
   <a href="#about">About</a>
   <a href="#committees">Committees</a>
   <a href="#event">2026</a>
-  <a href="#register">Apply Now</a>
 </div>
 
 <!-- Shared SVG symbols: fist mark, committee wreath ring (built at runtime) and per-committee glyphs -->
@@ -551,8 +524,8 @@
     <div class="edition-pill"><span class="dot"></span> AVOX MUN 2026 &nbsp;·&nbsp; October 11–13</div>
     <p class="hero-copy">A school Model United Nations conference for delegates who want to argue sharper, negotiate harder, and think on their feet when the debate turns. This is where your voice learns to carry.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#register">Apply as Delegate</a>
-      <a class="btn btn-ghost" href="#committees">Explore Committees</a>
+      <a class="btn btn-primary" href="#committees">Explore Committees</a>
+      <a class="btn btn-ghost" href="#event">Event Details</a>
     </div>
     <div class="scroll-cue"><span>Scroll</span><span class="stick"></span></div>
   </section>
@@ -592,7 +565,7 @@
     <div class="wrap committees-intro">
       <p class="kicker" data-reveal>Committees</p>
       <h2 class="h2" data-reveal>Six Rooms. Six Kinds Of Pressure.</h2>
-      <p class="lede" data-reveal>Keep scrolling — the floor turns and each committee takes the centre, one at a time. Find the room you want to argue in, then apply with it as your preference.</p>
+      <p class="lede" data-reveal>Keep scrolling — the floor turns and each committee takes the centre, one at a time. Find the room you want to argue in.</p>
     </div>
 
     <div class="committees-pin-wrap" id="committeesPinWrap">
@@ -673,57 +646,6 @@
         <div class="item"><p class="label">Venue</p><p class="value">Niraj International School</p></div>
         <div class="item"><p class="label">Delegates</p><p class="value">Limited Seats</p></div>
         <div class="item"><p class="label">Fee</p><p class="value">To Be Announced</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= REGISTER ================= -->
-  <section id="register">
-    <div class="wrap">
-      <p class="kicker" data-reveal>Join Us</p>
-      <h2 class="h2" data-reveal>Ready To Make Your Voice Carry?</h2>
-      <div class="register-panel" data-reveal="stagger">
-        <div class="register-copy">
-          <h3>Apply as a delegate</h3>
-          <p>Fill in your details and submit — your email app opens with the application pre-filled and addressed to the Avox secretariat. Press send and it's in.</p>
-          <p>Seats are limited and committees fill fast. Your allotment and the delegate fee are confirmed by email once the secretariat reviews your application.</p>
-        </div>
-        <!-- ══════════════════════════════════════════════════════════════
-             ⚠ PLACEHOLDER EMAIL — this form sends applications via mailto:
-             to SECRETARIAT_EMAIL, defined at the top of the script at the
-             bottom of this file. Swap it for the real secretariat address
-             before publishing.
-             ══════════════════════════════════════════════════════════════ -->
-        <form id="applyForm">
-          <div class="field">
-            <label for="fname">Full Name</label>
-            <input id="fname" name="fname" type="text" required placeholder="Your full name">
-          </div>
-          <div class="field">
-            <label for="femail">Email</label>
-            <input id="femail" name="femail" type="email" required placeholder="you@school.edu">
-          </div>
-          <div class="field">
-            <label for="fschool">School</label>
-            <input id="fschool" name="fschool" type="text" required placeholder="Your school name">
-          </div>
-          <div class="field">
-            <label for="fcommittee">Committee Preference</label>
-            <select id="fcommittee" name="fcommittee" required>
-              <option value="" disabled selected>Choose a committee</option>
-              <option>UNSC — United Nations Security Council</option>
-              <option>UNHRC — United Nations Human Rights Council</option>
-              <option>DISEC — Disarmament &amp; International Security Committee</option>
-              <option>IPL — Indian Premier League</option>
-              <option>IP — International Press</option>
-              <option>CCC — Continuous Crisis Committee</option>
-              <option>No preference</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Application</button>
-          <p class="form-msg" id="formMsg"></p>
-          <p class="form-note">This opens a pre-filled email to the Avox secretariat — nothing is submitted automatically until you hit send.</p>
-        </form>
       </div>
     </div>
   </section>
@@ -1008,40 +930,6 @@
       ctx.fill();
     });
   }
-  });
-
-  /* ---- Apply form -> pre-filled email ---- */
-  safe(function applyForm(){
-  /* ═══════════════════════════════════════════════════════════════════
-     ⚠ PLACEHOLDER EMAIL — SWAP BEFORE PUBLISHING ⚠
-     Submitting the form opens the visitor's mail app addressed to this
-     account. Replace it with the real AVOX secretariat address.
-     ═══════════════════════════════════════════════════════════════════ */
-  var SECRETARIAT_EMAIL = 'registrations@avoxmun.org'; // ← PLACEHOLDER, not a real inbox yet
-
-  var form = document.getElementById('applyForm');
-  var msg = document.getElementById('formMsg');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = form.fname.value.trim();
-    var email = form.femail.value.trim();
-    var school = form.fschool.value.trim();
-    var committee = form.fcommittee.value;
-
-    var subject = 'AVOX MUN 2026 — Delegate Application: ' + name;
-    var body =
-      'Name: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'School: ' + school + '\n' +
-      'Committee Preference: ' + committee + '\n';
-
-    var mailto = 'mailto:' + SECRETARIAT_EMAIL +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
-
-    window.location.href = mailto;
-    msg.textContent = 'Opening your email app — press send to complete your application.';
-  });
   });
 
   /* ---- Anchor click smooth-scroll offset for fixed header ---- */
