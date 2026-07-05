@@ -238,7 +238,7 @@
   .pillar p{ font-size:14.5px; color:var(--ink-dim); line-height:1.7; }
 
   /* ---------- Committees: scroll-pinned 3D carousel ---------- */
-  .committees-pin-wrap{ position:relative; height:500vh; }
+  .committees-pin-wrap{ position:relative; height:600vh; }
   .no-motion .committees-pin-wrap{ height:auto; }
 
   .committees-stage{
@@ -272,6 +272,10 @@
 
   .slide-scene{ position:absolute; inset:0; z-index:0; background:linear-gradient(160deg, rgba(24,42,70,.7), rgba(9,13,24,.9)); }
   .slide-scene::before{ content:""; position:absolute; inset:-20%; opacity:.6; }
+  .scene-unsc::before{ background:
+      radial-gradient(circle at 50% 100%, rgba(90,130,190,.32), transparent 55%),
+      repeating-linear-gradient(90deg, transparent 0 30px, rgba(233,213,166,.05) 31px 32px),
+      repeating-linear-gradient(0deg, transparent 0 30px, rgba(233,213,166,.05) 31px 32px); }
   .scene-disec::before{ background:
       radial-gradient(circle at 28% 75%, rgba(255,80,45,.4), transparent 55%),
       repeating-radial-gradient(circle at 50% 50%, transparent 0 26px, rgba(233,213,166,.05) 27px 29px); }
@@ -422,6 +426,17 @@
       </g>
     </symbol>
 
+    <!-- UNSC: world grid with a central star, security-council style -->
+    <symbol id="glyph-unsc" viewBox="0 0 200 200">
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <circle cx="100" cy="100" r="46" opacity=".6"/>
+        <ellipse cx="100" cy="100" rx="20" ry="46" opacity=".45"/>
+        <path d="M54,100 h92" opacity=".45"/>
+        <path d="M60,76 h80 M60,124 h80" opacity=".35"/>
+      </g>
+      <path fill="currentColor" d="M100,78 L107,96 L126,96 L111,107 L117,126 L100,114 L83,126 L89,107 L74,96 L93,96 Z"/>
+    </symbol>
+
     <!-- DISEC: two crossed missiles -->
     <symbol id="glyph-disec" viewBox="0 0 200 200">
       <g fill="currentColor">
@@ -541,7 +556,7 @@
   <section id="committees">
     <div class="wrap committees-intro">
       <p class="kicker" data-reveal>Committees</p>
-      <h2 class="h2" data-reveal>Five Rooms. Five Kinds Of Pressure.</h2>
+      <h2 class="h2" data-reveal>Six Rooms. Six Kinds Of Pressure.</h2>
       <p class="lede" data-reveal>Keep scrolling — step into each committee one at a time. Background guides and agendas release closer to the conference.</p>
     </div>
 
@@ -554,21 +569,21 @@
         <div class="committees-track" id="committeesTrack">
 
           <article class="committee-slide" data-idx="0">
-            <div class="slide-scene scene-disec"></div>
-            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-disec"/></svg>
+            <div class="slide-scene scene-unsc"></div>
+            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-unsc"/></svg>
             <p class="slide-kicker">Committee 01</p>
-            <h3 class="slide-name">DISEC</h3>
-            <p class="slide-full">Disarmament &amp; International Security Committee</p>
-            <p class="slide-tag">Where arms control meets the room's next move.</p>
+            <h3 class="slide-name">UNSC</h3>
+            <p class="slide-full">United Nations Security Council</p>
+            <p class="slide-tag">Where global power sits at one table.</p>
           </article>
 
           <article class="committee-slide" data-idx="1">
-            <div class="slide-scene scene-unhrc"></div>
-            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-unhrc"/></svg>
+            <div class="slide-scene scene-disec"></div>
+            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-disec"/></svg>
             <p class="slide-kicker">Committee 02</p>
-            <h3 class="slide-name">UNHRC</h3>
-            <p class="slide-full">United Nations Human Rights Council</p>
-            <p class="slide-tag">Human rights, argued under real pressure.</p>
+            <h3 class="slide-name">DISEC</h3>
+            <p class="slide-full">Disarmament &amp; International Security Committee</p>
+            <p class="slide-tag">Where arms control meets the room's next move.</p>
           </article>
 
           <article class="committee-slide" data-idx="2">
@@ -581,21 +596,30 @@
           </article>
 
           <article class="committee-slide" data-idx="3">
+            <div class="slide-scene scene-ip"></div>
+            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-ip"/></svg>
+            <p class="slide-kicker">Committee 04</p>
+            <h3 class="slide-name">IP</h3>
+            <p class="slide-full">International Press</p>
+            <p class="slide-tag">You don't just cover the story — you shape how it's told.</p>
+          </article>
+
+          <article class="committee-slide" data-idx="4">
             <div class="slide-scene scene-ccc"></div>
             <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-ccc"/></svg>
-            <p class="slide-kicker">Committee 04</p>
+            <p class="slide-kicker">Committee 05</p>
             <h3 class="slide-name">CCC</h3>
             <p class="slide-full">Continuous Crisis Committee</p>
             <p class="slide-tag">The floor shifts every few minutes. Adapt or fall behind.</p>
           </article>
 
-          <article class="committee-slide" data-idx="4">
-            <div class="slide-scene scene-ip"></div>
-            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-ip"/></svg>
-            <p class="slide-kicker">Committee 05</p>
-            <h3 class="slide-name">IP</h3>
-            <p class="slide-full">International Press</p>
-            <p class="slide-tag">You don't just cover the story — you shape how it's told.</p>
+          <article class="committee-slide" data-idx="5">
+            <div class="slide-scene scene-unhrc"></div>
+            <svg class="committee-emblem" viewBox="0 0 200 200" aria-hidden="true"><use href="#wreath-ring"/><use href="#glyph-unhrc"/></svg>
+            <p class="slide-kicker">Committee 06</p>
+            <h3 class="slide-name">UNHRC</h3>
+            <p class="slide-full">United Nations Human Rights Council</p>
+            <p class="slide-tag">Human rights, argued under real pressure.</p>
           </article>
 
         </div>
@@ -610,8 +634,8 @@
       <p class="kicker" data-reveal>Save The Details</p>
       <h2 class="h2" data-reveal>AVOX MUN 2026</h2>
       <div class="event-panel" data-reveal="stagger">
-        <div class="item"><p class="label">Dates</p><p class="value">To Be Announced</p></div>
-        <div class="item"><p class="label">Venue</p><p class="value">To Be Announced</p></div>
+        <div class="item"><p class="label">Dates</p><p class="value">October 11–13</p></div>
+        <div class="item"><p class="label">Venue</p><p class="value">Niraj International School</p></div>
         <div class="item"><p class="label">Delegates</p><p class="value">Limited Seats</p></div>
         <div class="item"><p class="label">Fee</p><p class="value">To Be Announced</p></div>
       </div>
@@ -646,11 +670,12 @@
             <label for="fcommittee">Committee Preference</label>
             <select id="fcommittee" name="fcommittee">
               <option>Just keep me posted</option>
+              <option>UNSC</option>
               <option>DISEC</option>
-              <option>UNHRC</option>
               <option>IPL</option>
-              <option>CCC</option>
               <option>IP</option>
+              <option>CCC</option>
+              <option>UNHRC</option>
               <option>No preference</option>
             </select>
           </div>
