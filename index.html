@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AVOX MUN 2026 — Voices That Carry</title>
-<meta name="description" content="AVOX Model United Nations — a school MUN conference. Improve. Initiate. Improvise. Applications for AVOX MUN 2026 opening soon.">
+<meta name="description" content="AVOX Model United Nations — Voices That Carry. October 11–13, 2026 at Niraj International School. Six committees, limited delegate seats. Apply as a delegate now.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e16'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E%E2%9C%8A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,12 +31,16 @@
     --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --ease:cubic-bezier(.16,.8,.24,1);
   }
-  html{ scroll-behavior:smooth; }
+  /* overflow-x on html too: with it only on body, mobile browsers expand the
+     layout viewport to fit off-screen decorative elements (3D slides, rays) */
+  html{ scroll-behavior:smooth; overflow-x:hidden; overflow-x:clip; }
   body{
     background:var(--bg-void);
     color:var(--ink);
     font-family:var(--sans);
-    overflow-x:hidden;
+    /* clip, not hidden: hidden would make body a scroll container and break
+       the position:sticky pinning of the committees stage */
+    overflow-x:clip;
     -webkit-font-smoothing:antialiased;
   }
   img,svg{ display:block; max-width:100%; }
@@ -301,7 +305,7 @@
   .slide-full{ position:relative; z-index:1; font-size:clamp(13px,1.6vw,15px); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); margin-top:6px; }
   .slide-tag{ position:relative; z-index:1; max-width:440px; margin:16px auto 0; color:var(--ink-dim); font-size:14.5px; line-height:1.7; }
 
-  .committees-dots{ position:absolute; bottom:28px; left:0; right:0; z-index:2; display:flex; justify-content:center; gap:10px; }
+  .committees-dots{ position:absolute; bottom:28px; left:0; right:0; z-index:2; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding:0 14px; }
   .no-motion .committees-dots{ display:none; }
   .committees-dots button{
     background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--ink-dim);
@@ -369,6 +373,8 @@
     .wrap{ padding:90px 18px; }
     .fist-wrap{ width:88vw; }
     .committee-slide{ width:96vw; height:64vh; }
+    .committees-dots{ gap:6px; }
+    .committees-dots button{ padding:6px 10px; font-size:10px; }
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -414,8 +420,10 @@
       <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo"/>
     </filter>
+    <!-- Engraved line-art fist: translucent gooey silhouette as the base tone,
+         hatch strokes (built at runtime, clipped to the same shapes) on top. -->
     <symbol id="fist-icon" viewBox="0 0 200 240">
-      <g filter="url(#goo)" fill="currentColor">
+      <g class="fist-body" filter="url(#goo)" fill="currentColor" opacity=".38">
         <rect x="72" y="176" width="58" height="64" rx="14"/>
         <rect x="60" y="118" width="90" height="70" rx="30"/>
         <ellipse cx="46" cy="150" rx="20" ry="26"/>
@@ -513,11 +521,11 @@
     <p class="subline">Model United Nations</p>
     <div class="hr"></div>
     <p class="motto">Improve &nbsp;·&nbsp; Initiate &nbsp;·&nbsp; Improvise</p>
-    <div class="edition-pill"><span class="dot"></span> AVOX MUN 2026 &nbsp;— applications opening soon</div>
+    <div class="edition-pill"><span class="dot"></span> AVOX MUN 2026 &nbsp;·&nbsp; October 11–13</div>
     <p class="hero-copy">A school Model United Nations conference for delegates who want to argue sharper, negotiate harder, and think on their feet when the debate turns. This is where your voice learns to carry.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#register">Apply as Delegate</a>
-      <a class="btn btn-ghost" href="#register">Register Interest</a>
+      <a class="btn btn-ghost" href="#register">Register Now</a>
     </div>
     <div class="scroll-cue"><span>Scroll</span><span class="stick"></span></div>
   </section>
@@ -557,7 +565,7 @@
     <div class="wrap committees-intro">
       <p class="kicker" data-reveal>Committees</p>
       <h2 class="h2" data-reveal>Six Rooms. Six Kinds Of Pressure.</h2>
-      <p class="lede" data-reveal>Keep scrolling — step into each committee one at a time. Background guides and agendas release closer to the conference.</p>
+      <p class="lede" data-reveal>Keep scrolling — the floor turns and each committee takes the centre, one at a time. Find the room you want to argue in, then apply with it as your preference.</p>
     </div>
 
     <div class="committees-pin-wrap" id="committeesPinWrap">
@@ -650,9 +658,15 @@
       <div class="register-panel" data-reveal="stagger">
         <div class="register-copy">
           <h3>Apply as a delegate</h3>
-          <p>Fill in your details and submit — your email app will open with everything pre-filled so you can send your application straight to the Avox secretariat.</p>
-          <p>Prefer to just be notified when registrations officially open? Use the same form and pick "Just keep me posted."</p>
+          <p>Fill in your details and submit — your email app opens with the application pre-filled and addressed to the Avox secretariat. Press send and it's in.</p>
+          <p>Seats are limited and committees fill fast. Your allotment and the delegate fee are confirmed by email once the secretariat reviews your application.</p>
         </div>
+        <!-- ══════════════════════════════════════════════════════════════
+             ⚠ PLACEHOLDER EMAIL — this form sends applications via mailto:
+             to SECRETARIAT_EMAIL, defined at the top of the script at the
+             bottom of this file. Swap it for the real secretariat address
+             before publishing.
+             ══════════════════════════════════════════════════════════════ -->
         <form id="applyForm">
           <div class="field">
             <label for="fname">Full Name</label>
@@ -668,14 +682,14 @@
           </div>
           <div class="field">
             <label for="fcommittee">Committee Preference</label>
-            <select id="fcommittee" name="fcommittee">
-              <option>Just keep me posted</option>
-              <option>UNSC</option>
-              <option>DISEC</option>
-              <option>IPL</option>
-              <option>IP</option>
-              <option>CCC</option>
-              <option>UNHRC</option>
+            <select id="fcommittee" name="fcommittee" required>
+              <option value="" disabled selected>Choose a committee</option>
+              <option>UNSC — United Nations Security Council</option>
+              <option>DISEC — Disarmament &amp; International Security Committee</option>
+              <option>IPL — Indian Premier League</option>
+              <option>IP — International Press</option>
+              <option>CCC — Continuous Crisis Committee</option>
+              <option>UNHRC — United Nations Human Rights Council</option>
               <option>No preference</option>
             </select>
           </div>
@@ -760,6 +774,36 @@
     addArc(80, -100, 11);
     symbol.appendChild(g);
     defs.appendChild(symbol);
+  })();
+
+  /* ---- Engrave the fist: hatch strokes clipped to the emblem's shapes ---- */
+  (function buildFistEngraving(){
+    var NS = 'http://www.w3.org/2000/svg';
+    var symbol = document.getElementById('fist-icon');
+    var defs = document.querySelector('#iconLib defs');
+    if(!symbol || !defs) return;
+
+    var clip = document.createElementNS(NS, 'clipPath');
+    clip.setAttribute('id', 'fist-clip');
+    Array.prototype.forEach.call(symbol.querySelector('.fist-body').children, function(shape){
+      clip.appendChild(shape.cloneNode());
+    });
+    defs.appendChild(clip);
+
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('clip-path', 'url(#fist-clip)');
+    g.setAttribute('stroke', 'currentColor');
+    g.setAttribute('stroke-width', '1.2');
+    g.setAttribute('opacity', '.85');
+    for(var y = -24; y < 300; y += 5){
+      var line = document.createElementNS(NS, 'line');
+      line.setAttribute('x1', '-20');
+      line.setAttribute('y1', y);
+      line.setAttribute('x2', '220');
+      line.setAttribute('y2', y + 26);
+      g.appendChild(line);
+    }
+    symbol.appendChild(g);
   })();
 
   /* ---- Committees: scroll-pinned 3D carousel ---- */
@@ -927,8 +971,12 @@
   }
 
   /* ---- Apply form -> pre-filled email ---- */
-  // TODO: replace with your real secretariat contact email before publishing.
-  var SECRETARIAT_EMAIL = 'registrations@avoxmun.org';
+  /* ═══════════════════════════════════════════════════════════════════
+     ⚠ PLACEHOLDER EMAIL — SWAP BEFORE PUBLISHING ⚠
+     Submitting the form opens the visitor's mail app addressed to this
+     account. Replace it with the real AVOX secretariat address.
+     ═══════════════════════════════════════════════════════════════════ */
+  var SECRETARIAT_EMAIL = 'registrations@avoxmun.org'; // ← PLACEHOLDER, not a real inbox yet
 
   var form = document.getElementById('applyForm');
   var msg = document.getElementById('formMsg');
