@@ -77,6 +77,21 @@
     0%,100%{ opacity:.55; transform:scale(1); }
     50%{ opacity:1; transform:scale(1.08); }
   }
+  /* the original poster's burning-cloud gradients, ghosted across every view */
+  .bg-fire{ position:absolute; left:0; right:0; pointer-events:none; }
+  .bg-fire-top{
+    top:0; height:min(42vh,430px); opacity:.26; transform-origin:top center;
+    background:var(--hero-tex-top) center/100% 100% no-repeat;
+    animation:fireBreatheIn 26s ease-in-out infinite alternate;
+  }
+  .bg-fire-bottom{
+    bottom:0; height:min(34vh,340px); opacity:.22; transform-origin:bottom center;
+    background:var(--hero-tex-bottom) center/100% 100% no-repeat;
+    animation:fireBreatheOut 31s ease-in-out infinite alternate;
+  }
+  @keyframes fireBreatheIn{ from{ transform:scale(1.02); } to{ transform:scale(1.12); } }
+  @keyframes fireBreatheOut{ from{ transform:scale(1.12); } to{ transform:scale(1.02); } }
+
   .rays{
     position:absolute; inset:-30%; opacity:.35; mix-blend-mode:screen;
     background:
@@ -149,8 +164,8 @@
   }
   /* burning-cloud bands lifted straight from the original AVOX poster */
   .hero::before, .hero::after{ content:""; position:absolute; left:0; right:0; z-index:0; pointer-events:none; }
-  .hero::before{ top:0; height:min(46vh,470px); background:var(--hero-tex-top) center/100% 100% no-repeat; }
-  .hero::after{ bottom:0; height:min(36vh,370px); background:var(--hero-tex-bottom) center/100% 100% no-repeat; }
+  .hero::before{ top:0; height:min(46vh,470px); background:var(--hero-tex-top) center/100% 100% no-repeat; transform-origin:top center; animation:fireBreatheIn 21s ease-in-out infinite alternate; }
+  .hero::after{ bottom:0; height:min(36vh,370px); background:var(--hero-tex-bottom) center/100% 100% no-repeat; transform-origin:bottom center; animation:fireBreatheOut 24s ease-in-out infinite alternate; }
   .fist-wrap{
     position:absolute; top:50%; left:50%; width:min(70vw,560px); aspect-ratio:1/1.2;
     transform:translate(-50%,-46%); opacity:.5; pointer-events:none; z-index:0;
@@ -159,6 +174,7 @@
   .fist-wrap .fist-img{
     width:100%; height:100%;
     background:var(--fist-ghost) center top/contain no-repeat;
+    animation:fistFloat 9s ease-in-out infinite alternate;
     -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent);
     mask-image:linear-gradient(to bottom, #000 78%, transparent);
   }
@@ -179,7 +195,8 @@
     font-family:var(--serif); font-weight:600; font-size:clamp(18px,3.4vw,30px); letter-spacing:.3em;
     text-transform:uppercase; color:var(--gold-bright); position:relative; z-index:1;
   }
-  .hr{ width:70px; height:1px; background:linear-gradient(90deg,transparent,var(--ember),transparent); margin:16px auto; position:relative; z-index:1; }
+  .hr{ width:70px; height:1px; background:linear-gradient(90deg,transparent,var(--ember),transparent); margin:16px auto; position:relative; z-index:1; animation:hrGlow 3.5s ease-in-out infinite alternate; }
+  @keyframes hrGlow{ from{ opacity:.55; } to{ opacity:1; } }
   .motto{
     font-size:clamp(13px,2.1vw,20px); font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold-bright);
     position:relative; z-index:1;
@@ -200,7 +217,8 @@
     padding:15px 32px; border-radius:999px; font-size:13px; letter-spacing:.1em; text-transform:uppercase;
     transition:all .35s var(--ease); position:relative; overflow:hidden; display:inline-block;
   }
-  .btn-primary{ background:linear-gradient(120deg,var(--ember-2),var(--ember)); color:#1a0e05; font-weight:600; box-shadow:0 10px 30px -10px rgba(255,90,50,.55); }
+  .btn-primary{ background:linear-gradient(120deg,var(--ember-2),var(--ember)); color:#1a0e05; font-weight:600; animation:ctaGlow 3.8s ease-in-out infinite alternate; }
+  @keyframes ctaGlow{ from{ box-shadow:0 10px 28px -10px rgba(255,90,50,.4); } to{ box-shadow:0 14px 44px -8px rgba(255,90,50,.85); } }
   .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 16px 40px -10px rgba(255,90,50,.75); }
   .btn-ghost{ border:1px solid var(--gold-dim); color:var(--gold-bright); }
   .btn-ghost:hover{ background:rgba(233,213,166,.08); transform:translateY(-3px); }
@@ -270,6 +288,7 @@
     pointer-events:none; z-index:0;
   }
   .stage-fist .fist-img{ width:min(46vw,380px); height:min(62vw,514px); background:var(--fist-ghost) center/contain no-repeat; opacity:.16; animation:fistPulse 8s ease-in-out infinite; }
+  @keyframes fistFloat{ from{ transform:translateY(-7px) scale(1); } to{ transform:translateY(7px) scale(1.02); } }
   @keyframes fistPulse{ 0%,100%{ transform:scale(1); opacity:.14; } 50%{ transform:scale(1.05); opacity:.22; } }
 
   .committees-track{ position:relative; }
@@ -286,7 +305,9 @@
     min-height:0; margin:0; will-change:transform, opacity;
   }
 
-  .slide-scene{ position:absolute; inset:0; z-index:0; background:var(--bg-navy); }
+  .slide-scene{ position:absolute; inset:0; z-index:0; background:var(--bg-navy); animation:kenBurns 22s ease-in-out infinite alternate; }
+  .committee-slide:nth-child(even) .slide-scene{ animation-duration:28s; animation-direction:alternate-reverse; }
+  @keyframes kenBurns{ from{ transform:scale(1); } to{ transform:scale(1.08); } }
   .slide-scene::before{ content:""; position:absolute; inset:-20%; opacity:.6; }
   /* Committees with real photographs, duotoned into the navy/gold/ember palette */
   .scene-unsc{ background-image:
@@ -332,7 +353,8 @@
     background-position: center, 50% 100%, center 42%;
     background-repeat: no-repeat; }
 
-  .committee-emblem{ width:clamp(80px,12vw,120px); color:var(--gold); position:relative; z-index:1; filter:drop-shadow(0 0 14px rgba(233,213,166,.35)); }
+  .committee-emblem{ width:clamp(80px,12vw,120px); color:var(--gold); position:relative; z-index:1; animation:emblemGlow 5s ease-in-out infinite alternate; }
+  @keyframes emblemGlow{ from{ filter:drop-shadow(0 0 10px rgba(233,213,166,.25)); } to{ filter:drop-shadow(0 0 24px rgba(233,213,166,.55)); } }
   .slide-kicker{ position:relative; z-index:1; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--ember); margin-top:18px; }
   .slide-name{ position:relative; z-index:1; font-family:var(--serif); font-weight:600; font-size:clamp(40px,7vw,72px); color:var(--gold-bright); margin-top:8px; letter-spacing:.02em; }
   .slide-full{ position:relative; z-index:1; font-size:clamp(13px,1.6vw,15px); letter-spacing:.12em; text-transform:uppercase; color:var(--ink); margin-top:6px; }
@@ -355,9 +377,12 @@
   /* ---------- Event ---------- */
   .event-panel{
     margin-top:50px; border:1px solid var(--line); border-radius:24px; padding:clamp(28px,5vw,56px);
-    background:linear-gradient(160deg, rgba(24,42,70,.5), rgba(11,17,32,.5));
+    background:linear-gradient(160deg, rgba(24,42,70,.55), rgba(11,17,32,.45), rgba(60,32,18,.35), rgba(11,17,32,.5));
+    background-size:220% 220%;
+    animation:panelDrift 16s ease-in-out infinite alternate;
     display:grid; grid-template-columns:repeat(2,1fr); gap:24px; text-align:center;
   }
+  @keyframes panelDrift{ from{ background-position:0% 0%; } to{ background-position:100% 100%; } }
   .event-panel .item .label{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ember); }
   .event-panel .item .value{ font-family:var(--serif); font-size:22px; color:var(--gold-bright); margin-top:10px; font-weight:600; }
   .event-panel .item{ border-right:1px solid var(--line); }
@@ -395,6 +420,8 @@
 <body>
 
 <div class="bg-layer" aria-hidden="true">
+  <div class="bg-fire bg-fire-top"></div>
+  <div class="bg-fire bg-fire-bottom"></div>
   <div class="rays"></div>
   <canvas id="embers"></canvas>
   <div class="grain"></div>
